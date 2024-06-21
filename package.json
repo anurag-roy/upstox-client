@@ -10,7 +10,14 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@hey-api/openapi-ts": "^0.47.1"
+    "@hey-api/openapi-ts": "^0.47.1",
+    "@typescript-eslint/eslint-plugin": "^7.13.1",
+    "@typescript-eslint/parser": "^7.13.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-simple-import-sort": "^12.1.0",
+    "prettier": "^3.3.2"
   },
   "dependencies": {
     "@hey-api/client-fetch": "^0.1.6"
