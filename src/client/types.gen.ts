@@ -1712,344 +1712,456 @@ export type OAuthClientException = {
 };
 
 export type ConvertPositionsData = {
-    requestBody: ConvertPositionRequest;
+    body: ConvertPositionRequest;
 };
 
 export type ConvertPositionsResponse = ConvertPositionResponse;
 
+export type ConvertPositionsError = ApiGatewayErrorResponse;
+
 export type GetPositionsResponse = GetPositionResponse;
+
+export type GetPositionsError = ApiGatewayErrorResponse;
 
 export type GetHoldingsResponse2 = GetHoldingsResponse;
 
+export type GetHoldingsError = ApiGatewayErrorResponse;
+
 export type ModifyOrderData2 = {
-    requestBody: ModifyOrderRequest;
+    body: ModifyOrderRequest;
 };
 
 export type ModifyOrderResponse2 = ModifyOrderResponse;
 
+export type ModifyOrderError = ApiGatewayErrorResponse;
+
 export type PlaceOrderData2 = {
-    requestBody: PlaceOrderRequest;
+    body: PlaceOrderRequest;
 };
 
 export type PlaceOrderResponse2 = PlaceOrderResponse;
 
+export type PlaceOrderError = ApiGatewayErrorResponse;
+
 export type GetTradesByOrderData = {
-    /**
-     * The order ID for which the order to get order trades
-     */
-    orderId: string;
+    query: {
+        /**
+         * The order ID for which the order to get order trades
+         */
+        order_id: string;
+    };
 };
 
 export type GetTradesByOrderResponse = GetTradeResponse;
 
+export type GetTradesByOrderError = ApiGatewayErrorResponse;
+
 export type GetTradeHistoryResponse = GetTradeResponse;
+
+export type GetTradeHistoryError = ApiGatewayErrorResponse;
 
 export type GetOrderBookResponse2 = GetOrderBookResponse;
 
+export type GetOrderBookError = ApiGatewayErrorResponse;
+
 export type GetOrderDetailsData = {
-    /**
-     * The order reference ID for which the order history is required
-     */
-    orderId?: string;
-    /**
-     * The unique tag of the order for which the order history is being requested
-     */
-    tag?: string;
+    query?: {
+        /**
+         * The order reference ID for which the order history is required
+         */
+        order_id?: string;
+        /**
+         * The unique tag of the order for which the order history is being requested
+         */
+        tag?: string;
+    };
 };
 
 export type GetOrderDetailsResponse = GetOrderResponse;
 
+export type GetOrderDetailsError = ApiGatewayErrorResponse;
+
 export type CancelOrderData2 = {
-    /**
-     * The order ID for which the order must be cancelled
-     */
-    orderId: string;
+    query: {
+        /**
+         * The order ID for which the order must be cancelled
+         */
+        order_id: string;
+    };
 };
 
 export type CancelOrderResponse2 = CancelOrderResponse;
 
-export type TokenData = {
-    formData?: TokenRequest;
-};
+export type CancelOrderError = ApiGatewayErrorResponse;
+
+export type TokenData = unknown;
 
 export type TokenResponse2 = TokenResponse;
 
+export type TokenError = ApiGatewayErrorResponse;
+
 export type AuthorizeData = {
-    clientId: string;
-    redirectUri: string;
-    scope?: string;
-    state?: string;
+    query: {
+        client_id: string;
+        redirect_uri: string;
+        scope?: string;
+        state?: string;
+    };
 };
 
 export type AutoLoginData = {
-    appName: string;
-    token: string;
+    query: {
+        app_name: string;
+        token: string;
+    };
 };
 
 export type LogoutResponse2 = LogoutResponse;
 
+export type LogoutError = ApiGatewayErrorResponse & OAuthClientException;
+
 export type GetProfileResponse2 = GetProfileResponse;
 
+export type GetProfileError = ApiGatewayErrorResponse;
+
 export type GetUserFundMarginData = {
-    segment?: 'SEC' | 'COM';
+    query?: {
+        segment?: 'SEC' | 'COM';
+    };
 };
 
 export type GetUserFundMarginResponse2 = GetUserFundMarginResponse;
 
+export type GetUserFundMarginError = ApiGatewayErrorResponse;
+
 export type GetTradeWiseProfitAndLossMetaDataData = {
-    /**
-     * Financial year for which data has been requested. Concatenation of last 2 digits of from year and to year Sample:for 2021-2022, financial_year will be 2122
-     */
-    financialYear: string;
-    /**
-     * Date from which data needs to be fetched. from_date and to_date should fall under the same financial year as mentioned in financial_year attribute. Date in dd-mm-yyyy format
-     */
-    fromDate?: string;
-    /**
-     * Segment for which data is requested can be from the following options EQ - Equity, FO - Futures and Options, COM - Commodity, CD - Currency Derivatives
-     */
-    segment: string;
-    /**
-     * Date till which data needs to be fetched. from_date and to_date should fall under the same financial year as mentioned in financial_year attribute. Date in dd-mm-yyyy format
-     */
-    toDate?: string;
+    query: {
+        /**
+         * Financial year for which data has been requested. Concatenation of last 2 digits of from year and to year Sample:for 2021-2022, financial_year will be 2122
+         */
+        financial_year: string;
+        /**
+         * Date from which data needs to be fetched. from_date and to_date should fall under the same financial year as mentioned in financial_year attribute. Date in dd-mm-yyyy format
+         */
+        from_date?: string;
+        /**
+         * Segment for which data is requested can be from the following options EQ - Equity, FO - Futures and Options, COM - Commodity, CD - Currency Derivatives
+         */
+        segment: string;
+        /**
+         * Date till which data needs to be fetched. from_date and to_date should fall under the same financial year as mentioned in financial_year attribute. Date in dd-mm-yyyy format
+         */
+        to_date?: string;
+    };
 };
 
 export type GetTradeWiseProfitAndLossMetaDataResponse2 = GetTradeWiseProfitAndLossMetaDataResponse;
 
+export type GetTradeWiseProfitAndLossMetaDataError = ApiGatewayErrorResponse;
+
 export type GetTradeWiseProfitAndLossDataData = {
-    /**
-     * Financial year for which data has been requested. Concatenation of last 2 digits of from year and to year Sample:for 2021-2022, financial_year will be 2122
-     */
-    financialYear: string;
-    /**
-     * Date from which data needs to be fetched. from_date and to_date should fall under the same financial year as mentioned in financial_year attribute. Date in dd-mm-yyyy format
-     */
-    fromDate?: string;
-    /**
-     * Page Number, the pages are starting from 1
-     */
-    pageNumber: number;
-    /**
-     * Page size for pagination. The maximum page size value is obtained from P and L report metadata API.
-     */
-    pageSize: number;
-    /**
-     * Segment for which data is requested can be from the following options EQ - Equity, FO - Futures and Options, COM - Commodity, CD - Currency Derivatives
-     */
-    segment: string;
-    /**
-     * Date till which data needs to be fetched. from_date and to_date should fall under the same financial year as mentioned in financial_year attribute. Date in dd-mm-yyyy format
-     */
-    toDate?: string;
+    query: {
+        /**
+         * Financial year for which data has been requested. Concatenation of last 2 digits of from year and to year Sample:for 2021-2022, financial_year will be 2122
+         */
+        financial_year: string;
+        /**
+         * Date from which data needs to be fetched. from_date and to_date should fall under the same financial year as mentioned in financial_year attribute. Date in dd-mm-yyyy format
+         */
+        from_date?: string;
+        /**
+         * Page Number, the pages are starting from 1
+         */
+        page_number: number;
+        /**
+         * Page size for pagination. The maximum page size value is obtained from P and L report metadata API.
+         */
+        page_size: number;
+        /**
+         * Segment for which data is requested can be from the following options EQ - Equity, FO - Futures and Options, COM - Commodity, CD - Currency Derivatives
+         */
+        segment: string;
+        /**
+         * Date till which data needs to be fetched. from_date and to_date should fall under the same financial year as mentioned in financial_year attribute. Date in dd-mm-yyyy format
+         */
+        to_date?: string;
+    };
 };
 
 export type GetTradeWiseProfitAndLossDataResponse2 = GetTradeWiseProfitAndLossDataResponse;
 
+export type GetTradeWiseProfitAndLossDataError = ApiGatewayErrorResponse;
+
 export type GetProfitAndLossChargesData = {
-    /**
-     * Financial year for which data has been requested. Concatenation of last 2 digits of from year and to year Sample:for 2021-2022, financial_year will be 2122
-     */
-    financialYear: string;
-    /**
-     * Date from which data needs to be fetched. from_date and to_date should fall under the same financial year as mentioned in financial_year attribute. Date in dd-mm-yyyy format
-     */
-    fromDate?: string;
-    /**
-     * Segment for which data is requested can be from the following options EQ - Equity, FO - Futures and Options, COM - Commodity, CD - Currency Derivatives
-     */
-    segment: string;
-    /**
-     * Date till which data needs to be fetched. from_date and to_date should fall under the same financial year as mentioned in financial_year attribute. Date in dd-mm-yyyy format
-     */
-    toDate?: string;
+    query: {
+        /**
+         * Financial year for which data has been requested. Concatenation of last 2 digits of from year and to year Sample:for 2021-2022, financial_year will be 2122
+         */
+        financial_year: string;
+        /**
+         * Date from which data needs to be fetched. from_date and to_date should fall under the same financial year as mentioned in financial_year attribute. Date in dd-mm-yyyy format
+         */
+        from_date?: string;
+        /**
+         * Segment for which data is requested can be from the following options EQ - Equity, FO - Futures and Options, COM - Commodity, CD - Currency Derivatives
+         */
+        segment: string;
+        /**
+         * Date till which data needs to be fetched. from_date and to_date should fall under the same financial year as mentioned in financial_year attribute. Date in dd-mm-yyyy format
+         */
+        to_date?: string;
+    };
 };
 
 export type GetProfitAndLossChargesResponse2 = GetProfitAndLossChargesResponse;
 
+export type GetProfitAndLossChargesError = ApiGatewayErrorResponse;
+
 export type GetOptionContractsData = {
-    /**
-     * Expiry date in format: YYYY-mm-dd
-     */
-    expiryDate?: string;
-    /**
-     * Instrument key for an underlying symbol
-     */
-    instrumentKey: string;
+    query: {
+        /**
+         * Expiry date in format: YYYY-mm-dd
+         */
+        expiry_date?: string;
+        /**
+         * Instrument key for an underlying symbol
+         */
+        instrument_key: string;
+    };
 };
 
 export type GetOptionContractsResponse = GetOptionContractResponse;
 
+export type GetOptionContractsError = ApiGatewayErrorResponse;
+
 export type GetPutCallOptionChainData = {
-    /**
-     * Expiry date in format: YYYY-mm-dd
-     */
-    expiryDate: string;
-    /**
-     * Instrument key for an underlying symbol
-     */
-    instrumentKey: string;
+    query: {
+        /**
+         * Expiry date in format: YYYY-mm-dd
+         */
+        expiry_date: string;
+        /**
+         * Instrument key for an underlying symbol
+         */
+        instrument_key: string;
+    };
 };
 
 export type GetPutCallOptionChainResponse = GetOptionChainResponse;
 
+export type GetPutCallOptionChainError = ApiGatewayErrorResponse;
+
 export type GetExchangeTimingsData = {
-    date: string;
+    path: {
+        date: string;
+    };
 };
 
 export type GetExchangeTimingsResponse = GetExchangeTimingResponse;
 
+export type GetExchangeTimingsError = ApiGatewayErrorResponse;
+
 export type GetMarketStatusData = {
-    exchange: string;
+    path: {
+        exchange: string;
+    };
 };
 
 export type GetMarketStatusResponse2 = GetMarketStatusResponse;
 
+export type GetMarketStatusError = ApiGatewayErrorResponse;
+
 export type GetHolidaysResponse = GetHolidayResponse;
 
+export type GetHolidaysError = ApiGatewayErrorResponse;
+
 export type GetHolidayData = {
-    date: string;
+    path: {
+        date: string;
+    };
 };
 
 export type GetHolidayResponse2 = GetHolidayResponse;
 
+export type GetHolidayError = ApiGatewayErrorResponse;
+
 export type GetFullMarketQuoteData = {
-    /**
-     * Comma separated list of instrument keys
-     */
-    instrumentKey?: string;
-    /**
-     * Comma separated list of symbols
-     * @deprecated
-     */
-    symbol?: string;
+    query?: {
+        /**
+         * Comma separated list of instrument keys
+         */
+        instrument_key?: string;
+        /**
+         * Comma separated list of symbols
+         * @deprecated
+         */
+        symbol?: string;
+    };
 };
 
 export type GetFullMarketQuoteResponse2 = GetFullMarketQuoteResponse;
 
+export type GetFullMarketQuoteError = ApiGatewayErrorResponse;
+
 export type GetMarketQuoteOhlcData = {
-    /**
-     * Comma separated list of instrument keys
-     */
-    instrumentKey?: string;
-    /**
-     * Interval to get ohlc data
-     */
-    interval: string;
-    /**
-     * Comma separated list of symbols
-     * @deprecated
-     */
-    symbol?: string;
+    query: {
+        /**
+         * Comma separated list of instrument keys
+         */
+        instrument_key?: string;
+        /**
+         * Interval to get ohlc data
+         */
+        interval: string;
+        /**
+         * Comma separated list of symbols
+         * @deprecated
+         */
+        symbol?: string;
+    };
 };
 
 export type GetMarketQuoteOhlcResponse = GetMarketQuoteOHLCResponse;
 
+export type GetMarketQuoteOhlcError = ApiGatewayErrorResponse;
+
 export type LtpData = {
-    /**
-     * Comma separated list of instrument keys
-     */
-    instrumentKey?: string;
-    /**
-     * Comma separated list of symbols
-     * @deprecated
-     */
-    symbol?: string;
+    query?: {
+        /**
+         * Comma separated list of instrument keys
+         */
+        instrument_key?: string;
+        /**
+         * Comma separated list of symbols
+         * @deprecated
+         */
+        symbol?: string;
+    };
 };
 
 export type LtpResponse = GetMarketQuoteLastTradedPriceResponse;
 
+export type LtpError = ApiGatewayErrorResponse;
+
 export type GetHistoricalCandleDataData = {
-    instrumentKey: string;
-    interval: string;
-    toDate: string;
+    path: {
+        instrumentKey: string;
+        interval: string;
+        to_date: string;
+    };
 };
 
 export type GetHistoricalCandleDataResponse = GetHistoricalCandleResponse;
 
+export type GetHistoricalCandleDataError = ApiGatewayErrorResponse;
+
 export type GetHistoricalCandleData1Data = {
-    fromDate: string;
-    instrumentKey: string;
-    interval: string;
-    toDate: string;
+    path: {
+        from_date: string;
+        instrumentKey: string;
+        interval: string;
+        to_date: string;
+    };
 };
 
 export type GetHistoricalCandleData1Response = GetHistoricalCandleResponse;
 
+export type GetHistoricalCandleData1Error = ApiGatewayErrorResponse;
+
 export type GetIntraDayCandleDataData = {
-    instrumentKey: string;
-    interval: string;
+    path: {
+        instrumentKey: string;
+        interval: string;
+    };
 };
 
 export type GetIntraDayCandleDataResponse = GetIntraDayCandleResponse;
 
+export type GetIntraDayCandleDataError = ApiGatewayErrorResponse;
+
 export type GetPortfolioStreamFeedData = {
-    /**
-     * Identifiers separated by commas denote the types of updates to receive.
-     */
-    updateTypes?: string;
+    query?: {
+        /**
+         * Identifiers separated by commas denote the types of updates to receive.
+         */
+        update_types?: string;
+    };
 };
 
 export type GetPortfolioStreamFeedAuthorizeData = {
-    /**
-     * Identifiers separated by commas denote the types of updates to receive.
-     */
-    updateTypes?: string;
+    query?: {
+        /**
+         * Identifiers separated by commas denote the types of updates to receive.
+         */
+        update_types?: string;
+    };
 };
 
 export type GetPortfolioStreamFeedAuthorizeResponse = WebsocketAuthRedirectResponse;
 
+export type GetPortfolioStreamFeedAuthorizeError = ApiGatewayErrorResponse;
+
 export type GetMarketDataFeedAuthorizeResponse = WebsocketAuthRedirectResponse;
 
+export type GetMarketDataFeedAuthorizeError = ApiGatewayErrorResponse;
+
 export type GetTradeHistory1Data = {
-    /**
-     * Date till which history needs needs to be fetched. Date in YYYY-mm-dd format
-     */
-    endDate: string;
-    /**
-     * Page number for which you want to fetch trade history
-     */
-    pageNumber: number;
-    /**
-     * How many records you want for a page
-     */
-    pageSize: number;
-    /**
-     * Segment for which data is requested can be from the following options EQ - Equity, FO - Futures and Options, COM - Commodity, CD - Currency Derivatives MF - Mutual Funds
-     */
-    segment?: string;
-    /**
-     * Date from which trade history needs to be fetched. Date in YYYY-mm-dd format
-     */
-    startDate: string;
+    query: {
+        /**
+         * Date till which history needs needs to be fetched. Date in YYYY-mm-dd format
+         */
+        end_date: string;
+        /**
+         * Page number for which you want to fetch trade history
+         */
+        page_number: number;
+        /**
+         * How many records you want for a page
+         */
+        page_size: number;
+        /**
+         * Segment for which data is requested can be from the following options EQ - Equity, FO - Futures and Options, COM - Commodity, CD - Currency Derivatives MF - Mutual Funds
+         */
+        segment?: string;
+        /**
+         * Date from which trade history needs to be fetched. Date in YYYY-mm-dd format
+         */
+        start_date: string;
+    };
 };
 
 export type GetTradeHistory1Response = TradeHistoryResponse;
 
+export type GetTradeHistory1Error = ApiGatewayErrorResponse;
+
 export type GetBrokerageData = {
-    /**
-     * Key of the instrument
-     */
-    instrumentToken: string;
-    /**
-     * Price with which the order is to be placed
-     */
-    price: number;
-    /**
-     * Product with which the order is to be placed
-     */
-    product: string;
-    /**
-     * Quantity with which the order is to be placed
-     */
-    quantity: number;
-    /**
-     * Indicates whether its a BUY or SELL order
-     */
-    transactionType: string;
+    query: {
+        /**
+         * Key of the instrument
+         */
+        instrument_token: string;
+        /**
+         * Price with which the order is to be placed
+         */
+        price: number;
+        /**
+         * Product with which the order is to be placed
+         */
+        product: string;
+        /**
+         * Quantity with which the order is to be placed
+         */
+        quantity: number;
+        /**
+         * Indicates whether its a BUY or SELL order
+         */
+        transaction_type: string;
+    };
 };
 
 export type GetBrokerageResponse2 = GetBrokerageResponse;
+
+export type GetBrokerageError = ApiGatewayErrorResponse;
 
 export type $OpenApiTs = {
     '/v2/portfolio/convert-position': {
@@ -2059,31 +2171,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: ConvertPositionResponse;
+                '200': ConvertPositionResponse;
                 /**
                  * Bad Request
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Authorization Failure
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2093,31 +2205,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetPositionResponse;
+                '200': GetPositionResponse;
                 /**
                  * Bad Request
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Authorization Failure
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2127,31 +2239,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetHoldingsResponse;
+                '200': GetHoldingsResponse;
                 /**
                  * Bad Request
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Authorization Failure
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2162,31 +2274,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: ModifyOrderResponse;
+                '200': ModifyOrderResponse;
                 /**
                  * UDAPI100010 - Unknown order id | order request rejected
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2197,31 +2309,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: PlaceOrderResponse;
+                '200': PlaceOrderResponse;
                 /**
                  * Bad Request
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2232,31 +2344,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetTradeResponse;
+                '200': GetTradeResponse;
                 /**
                  * UDAPI1010 - Order id accepts only alphanumeric characters and '-'.<br>UDAPI1023 - Order id is required<br>UDAPI100010 - Unknown order id | order request rejected
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2266,31 +2378,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetTradeResponse;
+                '200': GetTradeResponse;
                 /**
                  * Bad Request
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2300,31 +2412,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetOrderBookResponse;
+                '200': GetOrderBookResponse;
                 /**
                  * Bad Request
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2335,31 +2447,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetOrderResponse;
+                '200': GetOrderResponse;
                 /**
                  * UDAPI1010 - Order id accepts only alphanumeric characters and '-'<br>UDAPI1023 - Order id is required<br>UDAPI100010 - Unknown order id | order request rejected
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2370,31 +2482,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: CancelOrderResponse;
+                '200': CancelOrderResponse;
                 /**
                  * UDAPI1010 - Order id accepts only alphanumeric characters and '-'.<br>UDAPI1023 - Order id is required<br>UDAPI100010 - Unknown order id | order request rejected
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2405,28 +2517,28 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: TokenResponse;
+                '200': TokenResponse;
                 /**
                  * UDAPI1017 - API Key is required <br/>UDAPI1018 - Redirect URI is required <br/>UDAPI1022 - Code is required <br/>UDAPI1023 - Grant type is required <br/>UDAPI1024 - App Secret is required <br/>
                  */
-                400: ApiGatewayErrorResponse;
-                401: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2437,28 +2549,28 @@ export type $OpenApiTs = {
                 /**
                  * Successful Operation
                  */
-                302: unknown;
+                '302': unknown;
                 /**
                  * UDAPI1018 - Redirect URI is required
                  */
-                400: ApiGatewayErrorResponse;
-                401: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2469,33 +2581,33 @@ export type $OpenApiTs = {
                 /**
                  * Found
                  */
-                302: {
+                '302': {
                     [key: string]: unknown;
                 };
                 /**
                  * Bad Request
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2505,31 +2617,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: LogoutResponse;
+                '200': LogoutResponse;
                 /**
                  * Bad Request
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Authorization Failure
                  */
-                401: OAuthClientException;
+                '401': OAuthClientException;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2539,31 +2651,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetProfileResponse;
+                '200': GetProfileResponse;
                 /**
                  * Bad Request
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2574,31 +2686,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetUserFundMarginResponse;
+                '200': GetUserFundMarginResponse;
                 /**
                  * UDAPI1019 - segment is invalid
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2609,31 +2721,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetTradeWiseProfitAndLossMetaDataResponse;
+                '200': GetTradeWiseProfitAndLossMetaDataResponse;
                 /**
                  * UDAPI1070 - The financial_year is required<br>UDAPI1067 - The ''segment'' is required<br>UDAPI1066 - The ''segment'' is invalid<br>UDAPI1073 - Financial year should have max length of 4<br>UDAPI1068 - The start_date is required<br>UDAPI1069 - The end_date is required
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2644,31 +2756,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetTradeWiseProfitAndLossDataResponse;
+                '200': GetTradeWiseProfitAndLossDataResponse;
                 /**
                  * UDAPI1070 - The financial_year is required<br>UDAPI1071 - The page_number is required<br>UDAPI1072 - The page_size is required<br>UDAPI1067 - The ''segment'' is required<br>UDAPI1066 - The ''segment'' is invalid<br>UDAPI1073 - Financial year should have max length of 4
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2679,31 +2791,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetProfitAndLossChargesResponse;
+                '200': GetProfitAndLossChargesResponse;
                 /**
                  * UDAPI1067 - The ''segment'' is required<br>UDAPI1066 - The ''segment'' is invalid<br>UDAPI1068 - The start_date is required<br>UDAPI1069 - The end_date is required
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2714,28 +2826,28 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetOptionContractResponse;
-                400: ApiGatewayErrorResponse;
+                '200': GetOptionContractResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2746,28 +2858,28 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetOptionChainResponse;
-                400: ApiGatewayErrorResponse;
+                '200': GetOptionChainResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2778,28 +2890,28 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetExchangeTimingResponse;
-                400: ApiGatewayErrorResponse;
+                '200': GetExchangeTimingResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2810,28 +2922,28 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetMarketStatusResponse;
-                400: ApiGatewayErrorResponse;
+                '200': GetMarketStatusResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2841,28 +2953,28 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetHolidayResponse;
-                400: ApiGatewayErrorResponse;
+                '200': GetHolidayResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2873,28 +2985,28 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetHolidayResponse;
-                400: ApiGatewayErrorResponse;
+                '200': GetHolidayResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2905,31 +3017,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetFullMarketQuoteResponse;
+                '200': GetFullMarketQuoteResponse;
                 /**
                  * UDAPI1009 - symbol is required<br>UDAPI1011 - symbol is of invalid format<br>UDAPI100011 - Invalid Instrument key
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2940,31 +3052,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetMarketQuoteOHLCResponse;
+                '200': GetMarketQuoteOHLCResponse;
                 /**
                  * UDAPI1009 - symbol is required<br>UDAPI1011 - symbol is of invalid format<br>UDAPI1027 - interval is required<br>UDAPI1028 - Invalid interval<br>UDAPI100011 - Invalid Instrument key
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -2975,31 +3087,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetMarketQuoteLastTradedPriceResponse;
+                '200': GetMarketQuoteLastTradedPriceResponse;
                 /**
                  * UDAPI1009 - symbol is required<br>UDAPI1011 - symbol is of invalid format<br>UDAPI100011 - Invalid Instrument key
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -3010,31 +3122,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetHistoricalCandleResponse;
+                '200': GetHistoricalCandleResponse;
                 /**
                  * UDAPI1015 - to_date must be greater than or equal to from_date and Date should be in valid format: yyyy-mm-dd<br>UDAPI1020 - Interval accepts one of (1minute,30minute,day,week,month)<br>UDAPI1021 - Instrument key is of invalid format<br>UDAPI1022 - to_date is required<br>UDAPI100011 - Invalid Instrument key
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -3045,31 +3157,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetHistoricalCandleResponse;
+                '200': GetHistoricalCandleResponse;
                 /**
                  * UDAPI1015 - to_date must be greater than or equal to from_date and Date should be in valid format: yyyy-mm-dd<br>UDAPI1020 - Interval accepts one of (1minute,30minute,day,week,month)<br>UDAPI1021 - Instrument key is of invalid format<br>UDAPI1022 - to_date is required<br>UDAPI100011 - Invalid Instrument key
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -3080,31 +3192,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetIntraDayCandleResponse;
+                '200': GetIntraDayCandleResponse;
                 /**
                  * UDAPI1076 - Interval accepts one of (1minute,30minute)<br>UDAPI1021 - Instrument key is of invalid format<br>UDAPI100011 - Invalid Instrument key
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -3115,31 +3227,31 @@ export type $OpenApiTs = {
                 /**
                  * Location for authorized access of portfolio stream feed
                  */
-                302: unknown;
+                '302': unknown;
                 /**
                  * Bad Request
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -3150,31 +3262,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: WebsocketAuthRedirectResponse;
+                '200': WebsocketAuthRedirectResponse;
                 /**
                  * Bad Request
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -3184,31 +3296,31 @@ export type $OpenApiTs = {
                 /**
                  * Location for authorized access of market data feed
                  */
-                302: unknown;
+                '302': unknown;
                 /**
                  * Bad Request
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -3218,31 +3330,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: WebsocketAuthRedirectResponse;
+                '200': WebsocketAuthRedirectResponse;
                 /**
                  * Bad Request
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -3253,31 +3365,31 @@ export type $OpenApiTs = {
                 /**
                  * OK
                  */
-                200: TradeHistoryResponse;
+                '200': TradeHistoryResponse;
                 /**
                  * Bad Request
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
@@ -3288,31 +3400,31 @@ export type $OpenApiTs = {
                 /**
                  * Successful
                  */
-                200: GetBrokerageResponse;
+                '200': GetBrokerageResponse;
                 /**
                  * UDAPI1060 - The quantity is required<br>UDAPI1061 - The price is required<br>UDAPI1062 - The transaction_type is required<br> UDAPI1063 - The product is required<br> UDAPI1064 - The quantity cannot be zero<br>UDAPI1065 - The price cannot be zero<br>UDAPI1059 - The instrument_token is of invalid format
                  */
-                400: ApiGatewayErrorResponse;
+                '400': ApiGatewayErrorResponse;
                 /**
                  * Unauthorized
                  */
-                401: ApiGatewayErrorResponse;
+                '401': ApiGatewayErrorResponse;
                 /**
                  * Method Not Allowed
                  */
-                405: ApiGatewayErrorResponse;
+                '405': ApiGatewayErrorResponse;
                 /**
                  * Locked
                  */
-                423: ApiGatewayErrorResponse;
+                '423': ApiGatewayErrorResponse;
                 /**
                  * Too Many Requests
                  */
-                429: ApiGatewayErrorResponse;
+                '429': ApiGatewayErrorResponse;
                 /**
                  * Internal Server Error
                  */
-                500: ApiGatewayErrorResponse;
+                '500': ApiGatewayErrorResponse;
             };
         };
     };
